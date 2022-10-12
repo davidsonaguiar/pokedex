@@ -5,20 +5,14 @@ import Icon from 'react-native-vector-icons/FontAwesome'
 
 function Search({ onSubmit }) {
 
-    const [ input, setInput ] = useState('')
-
     return(
         <View style={Styles.container}>
             <View style={Styles.search}>
                 <TextInput
                     style={Styles.input}
-                    placeholder='Enter the Pokémon ID or name here!'
-                    value={input}
-                    onChangeText={setInput}
-                    onBlur={() => onSubmit(input)}/>
+                    placeholder='Enter the Pokémon ID or name here!'/>
                 <TouchableHighlight
-                    style={Styles.button}
-                    onPress={() => onSubmit(input)}>
+                    style={Styles.button}>
                     <Icon name="search" size={18} color="#FFFFFF"></Icon>
                 </TouchableHighlight>
             </View>

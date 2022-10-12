@@ -4,8 +4,7 @@ import Icon from 'react-native-vector-icons/AntDesign'
 function Button({ name, fn, id }) {
     return(
         <TouchableHighlight 
-            style={styles.button}
-            onPress={() => fn(id)}>
+            style={styles.button}>
             <Text>
                 <Icon 
                     name={name} 

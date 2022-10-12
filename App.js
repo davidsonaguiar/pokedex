@@ -13,9 +13,6 @@ export default function App() {
    const src = id => `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${id}.png`
    const capitalize = str => str?.replace(str[0], str[0].toUpperCase())
 
-   const inc = num => num + 1 > 905? setSearch(1): setSearch(num + 1);
-   const dec = num => num - 1 < 1? setSearch(905):  setSearch(num - 1);
-
    useEffect(() => {
       fetch(URL(search.toString().toLowerCase()))
          .then(req => req.json())
@@ -51,12 +48,10 @@ export default function App() {
          <View style={{flexDirection: 'row'}}>
             <Button 
                name='arrowleft'
-               id={data.id}
-               fn={dec}/>
+               id={data.id}/>
             <Button 
                name='arrowright'
-               id={data.id}
-               fn={inc}/>
+               id={data.id}/>
          </View>
 
       </View>
