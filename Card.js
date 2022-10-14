@@ -1,56 +1,34 @@
-import {  Text, View, Image, StyleSheet } from 'react-native';
+import {  Text, View, ScrollView, Image, StyleSheet } from 'react-native';
 
 
-function Card({ src, id, name, types, height, weight, abilities, stats }, children) {
-
-    const capitalize = str => str?.replace(str[0], str[0].toUpperCase())
-
-    const listAbilities = abilities?.map((ability, key) => 
-        <Text key={key} style={styles.textNormal}>{ability}</Text>)
-
-    const listStats = stats?.map((stat, key) => 
-        <Text key={key} style={styles.textNormal}>{capitalize(stat.stat.name)}: {stat.base_stat}</Text>)
-    
-    
+function Card({ src, id, name, types, height, weight, abilities, stats }) {
 
     return(
         <View style={styles.container}>
             <View style={styles.card}>
-                <View style={{flexDirection: 'row', alignItems: 'center'}}>
-                    <Text style={styles.textTitle}>
-                        {name}
-                    </Text>
-                    <Text style={styles.textNormal}>
-                        #{String(id).padStart(3, '0')}
+                <View style={styles.containerTitle}>
+                    <Text>
+                        <Text style={styles.title}>{name}</Text> 
+                        <Text style={styles.textNormal}> #{id?.toString().padStart(3, '0')}</Text>
                     </Text>
                 </View>
-                <View style={styles.img}>
-                    <Text style={styles.type}>{types?.join(' - ')}</Text>
+                <View style={styles.containerImage}>
                     <Image 
-                        style={{width: 200, height: 200,}}
-                        source={{uri: src}}/>
+                        style={{width: 260, height: 260}}
+                        source={{uri: src}}></Image>
+                    <Text
+                        style={styles.types}
+                        >{types?.join(' - ')}</Text>
                 </View>
-                <View>
-                    <View style={{
-                        display: 'flex',
-                        flexDirection: 'row',
-                        justifyContent: 'space-between',
-                    }}>
-                        <View>
-                            <Text style={styles.textSubtitulo}>Info</Text>
-                            <Text style={styles.textNormal}>Height: {height}m</Text>
-                            <Text style={styles.textNormal}>Height: {weight}kg</Text>
-                        </View>
-                        <View>
-                            <Text style={styles.textSubtitulo}>Abilities</Text>
-                            {listAbilities}
-                        </View>
-                    </View>
-                    <View style={{marginTop: 15}}>
-                        <Text style={styles.textSubtitulo}>Stats</Text>
-                        {listStats}
-                    </View>
-                </View>
+                <ScrollView style={styles.containerDatas}>
+                    <Text style={styles.Subtitle}>Info</Text>
+                    <Text style={styles.textNormal}>Height: {height}m</Text>
+                    <Text style={styles.textNormal}>Weight: {weight}kg</Text>
+                    <Text style={styles.Subtitle}>Abilities</Text>
+                    {abilities?.map(ability => <Text style={styles.textNormal}>{ability}</Text>)}
+                    <Text style={styles.Subtitle}>Stats</Text>
+                    {stats}
+                </ScrollView>
             </View>
         </View>
     )
@@ -58,42 +36,47 @@ function Card({ src, id, name, types, height, weight, abilities, stats }, childr
 
 const styles = StyleSheet.create({
     container: {
-        flex: 1, 
-        paddingHorizontal: 20,
+        flex: 1,
+        margin: 20,
     },
     card: {
         flex: 1,
-        paddingHorizontal: 30,
-        backgroundColor: '#7986CB25',
+        padding: 10,
+        borderWidth: 1,
+        borderColor: '#d5d5d5',
+        borderRadius: 5,
     },
-    type: {
-        position: 'absolute',
-        bottom: 10,
-        left: 10,
-        color: '#FFF',
-        fontSize: 16,
+    containerTitle: {
+        marginBottom: 10,
+        justifyContent: 'center',
     },
-    textTitle: {
-        flex: 1,
-        paddingRight: 15,
+    title: {
         color: '#7986CB',
-        fontSize: 32,
+        fontSize: 42,
     },
-    img: {
-        position: 'relative',
-        marginVertical: 10,
+    containerImage: {
+        marginBottom: 10,
         backgroundColor: '#7986CB70',
         borderRadius: 5,
+        flexDirection: 'row',
+        alignItems: 'center',
         justifyContent: 'center',
-        alignItems: 'center'
+    },
+    types: {
+        position: 'absolute', 
+        bottom: 10, 
+        left: 10, 
+        color: '#fff', 
+        fontSize: 20
+    },
+    Subtitle: {
+        color: '#7986CB',
+        fontSize: 32,
+        marginVertical: 5,
     },
     textNormal: {
-        color: '#666',
-        fontSize: 16,
-    },
-    textSubtitulo: {    
-        color: '#7986CB',
-        fontSize: 22,
+        color: '#353535',
+        fontSize: 24,
     }
 })
 

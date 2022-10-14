@@ -4,12 +4,13 @@ import Icon from 'react-native-vector-icons/AntDesign'
 function Button({ name, fn, id }) {
     return(
         <TouchableHighlight 
-            style={styles.button}>
+            style={styles.button}
+            onPress={() => fn(id)}>
             <Text>
                 <Icon 
                     name={name} 
                     size={24} 
-                    color="#fff"></Icon>
+                    color="#7986CB"></Icon>
             </Text>
         </TouchableHighlight>
     )
@@ -19,9 +20,10 @@ const styles = StyleSheet.create({
     button: {
         flex: 1,
         height: 45,
-        backgroundColor: '#7986CB',
+        marginHorizontal: 10,
+        backgroundColor: '#FFFFFF',
         borderWidth: 1,
-        borderColor: '#fff',
+        borderColor: '#FFFFFF',
         borderRadius: 5,
         justifyContent: 'center',
         alignItems: 'center'
