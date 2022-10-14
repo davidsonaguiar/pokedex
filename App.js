@@ -10,7 +10,9 @@ export default function App() {
    const [ data, setData ] = useState([])
 
    const URL = num => `https://pokeapi.co/api/v2/pokemon/${num}`
-   const src = id => `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${id}.png`
+   const src = id => id !== 0? 
+      `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${id}.png`:
+      'https://i.pinimg.com/originals/2c/ff/71/2cff71e1592bda93205afae82ff4cee2.gif'
    const capitalize = str => str?.replace(str[0], str[0].toUpperCase())
 
    const inc = num => num + 1 > 905? setSearch(1): setSearch(num + 1);
@@ -23,7 +25,10 @@ export default function App() {
             setData(resp)
          }).catch(() => {
             setData({
+               id: 0,
                name: 'Pokemon not found!',
+               height: 0,
+               weight: 0,
             })
          })
    }, [search])
@@ -54,7 +59,7 @@ export default function App() {
             src={src(data.id)}/>
 
          <View style={{
-            paddingHorizontal: 10, 
+            paddingHorizontal: 20, 
             paddingVertical: 10,
             backgroundColor: '#7986CB',
             flexDirection: 'row', 

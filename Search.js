@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import {  View, TouchableHighlight, TextInput, StyleSheet } from 'react-native';
+import {  View, TouchableOpacity, TextInput, StyleSheet } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome'
 
 
@@ -16,11 +16,11 @@ function Search({ onSubmit }) {
                     value={input}
                     onChangeText={setInput}
                     onBlur={() => onSubmit(input)}/>
-                <TouchableHighlight
+                <TouchableOpacity
                     style={Styles.button}
                     onPress={() => onSubmit(input)}>
                     <Icon name="search" size={18} color="#FFFFFF"></Icon>
-                </TouchableHighlight>
+                </TouchableOpacity>
             </View>
         </View>
     )

@@ -25,7 +25,7 @@ function Card({ src, id, name, types, height, weight, abilities, stats }) {
                     <Text style={styles.textNormal}>Height: {height}m</Text>
                     <Text style={styles.textNormal}>Weight: {weight}kg</Text>
                     <Text style={styles.Subtitle}>Abilities</Text>
-                    {abilities?.map(ability => <Text style={styles.textNormal}>{ability}</Text>)}
+                    {abilities?.map((ability, key) => <Text  key={key} style={styles.textNormal}>{ability}</Text>)}
                     <Text style={styles.Subtitle}>Stats</Text>
                     {stats}
                 </ScrollView>
